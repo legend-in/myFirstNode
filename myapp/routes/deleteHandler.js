@@ -23,12 +23,10 @@ const deleteErrorHandler = (req, res, next) => {
     const pathToFile = path.join(dataPath, `${filename}.json`);
     console.log(`Finding file: ${pathToFile}`);
     if (!fs.existsSync(pathToFile)) {
-        res.status(404).send(`Tweet with id ${filename} does not exits.`);
+        res.status(404).send(`Tweet with id: ${filename} does not exits.`);
     } else {
         next();
     }
 };
-
-
 
 module.exports = {deleteHandler, deleteErrorHandler};
