@@ -3,7 +3,11 @@ var router = express.Router();
 
 // GET tweets
 router.get("/", (req, res, next) => {
-    res.send("GET a list of tweets");
+    const tweets = {
+        content1:  "tweet 1",
+        content2: "tweet 2"
+    };
+    res.send(`GET a list of tweets: ${JSON.stringify(tweets)}`);
 });
 
 // POST a tweet
