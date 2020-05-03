@@ -21,4 +21,6 @@ $ cd myapp
 
 # start the server
 $ npm start
+# or start the server in debug mode
+$ DEBUG=myapp:* npm start
 ```
