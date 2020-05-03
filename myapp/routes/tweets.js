@@ -6,18 +6,15 @@ const {putErrorHandler, putHandler} = require("./putHandler");
 const {deleteErrorHandler, deleteHandler} = require("./deleteHandler");
 
 // GET all the tweets
-router.get("/", getErrorHandler);
-router.get("/", getHandler);
+router.get("/", getErrorHandler, getHandler);
 
 // POST a new tweet
 router.post("/", postHandler);
 
 // PUT a twwet
-router.put("/:filename", putErrorHandler);
-router.put("/:filename", putHandler);
+router.put("/:filename", putErrorHandler, putHandler);
 
 // DELETE a tweet
-router.delete("/:filename", deleteErrorHandler);
-router.delete("/:filename", deleteHandler);
+router.delete("/:filename", deleteErrorHandler, deleteHandler);
 
 module.exports = router;
