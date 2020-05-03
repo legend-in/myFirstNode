@@ -9,6 +9,6 @@ express --view=pug myapp
 For the first part in-class practice  
 | URL | HTTP Method | POST body | Result| 
 | --- | ----------- | ----------| ----- |
-|`/tweets` | GET | | Get a list of tweets |
-| `/tweets/new` | POST | tweetContent | Post a new tweet |
-| `/tweets/:id/delete` | DELETE | | Delete a tweet |
+| /tweets | GET | | Get a list of tweets |
+| /tweets/new | POST | tweetContent | Post a new tweet |
+| /tweets/:id/delete | DELETE | | Delete a tweet |
