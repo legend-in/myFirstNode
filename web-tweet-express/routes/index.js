@@ -1,10 +1,12 @@
 const express = require("express");
-const tweets = require("../tweets");
+const Tweets = require("../models/tweets");
 
 const router = express.Router();
 
 router.get("/", (req, res, next) => {
-    res.render("index", { tweets });
+    Tweets.find({}, (err, tweets) => {
+        res.render("index", { tweets });
+    });
 });
 
 router.get("/login", (req, res, next) => {
@@ -12,6 +14,7 @@ router.get("/login", (req, res, next) => {
 });
 
 router.get("/signup", (req, res, next) => {
+
     res.render("signup");
 });
 

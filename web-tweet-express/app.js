@@ -4,7 +4,8 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require("mongoose");
-mongoose.connect();
+const config = require("./config");
+mongoose.connect(config.mongodb.connection);
 
 const app = express();
 
