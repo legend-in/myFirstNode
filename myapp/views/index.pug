@@ -2,7 +2,8 @@ extends layout
 
 block content
   h1= title
-  - const first20Books = books.slice(20-19)
+  - 
+    const first20Books = books.slice(20-19)
   div.flex-container
     each book in first20Books
       figure
