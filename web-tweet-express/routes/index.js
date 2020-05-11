@@ -1,5 +1,8 @@
 const express = require("express");
 const Tweets = require("../models/tweets");
+const passport = require("passport");
+
+const Users = require("../models/users");
 
 const router = express.Router();
 
@@ -10,19 +13,46 @@ router.get("/", (req, res, next) => {
     //         name: "JJ",
     //         username: "legend"
     //     }
-    // });
+	// });
     Tweets.find({}, (err, tweets) => {
         res.render("index", { tweets });
     });
 });
 
 router.get("/login", (req, res, next) => {
-    res.render("login");
+	res.render("login");
+});
+
+router.post("/login", passport.authenticate("local"), (req, res, next) => {
+	res.redirect("/");
 });
 
 router.get("/signup", (req, res, next) => {
-
     res.render("signup");
+});
+
+router.post("/signup", (req, res, next) => {
+	const { username, password, confirmPassword } = req.body;
+	if (password === confirmPassword) {
+		Users.register(new Users({
+			username,
+			name: username
+		}), password, (err, user) => {
+			if (err) {
+				return next (err);
+			}
+			passport.authenticate("local")(req, res, () => {
+				return res.redirect("/");
+			});
+		});
+	} else {
+		return next({ message: "Password does not match" });
+	}
+});
+
+router.get("/logout", (req, res, next) => {
+	req.logout();
+	res.redirect("/login");
 });
 
 module.exports = router;

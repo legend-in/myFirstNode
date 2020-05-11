@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const passportLocalMongoose = require("passport-local-mongoose");
+
 const Schema = mongoose.Schema;
 
 const UsersSchema = new Schema({
@@ -17,6 +19,8 @@ const UsersSchema = new Schema({
         default: "/img/webdxd.png"
     }
 });
+
+UsersSchema.plugin(passportLocalMongoose);
 
 const Users = mongoose.model("Users", UsersSchema);
 
