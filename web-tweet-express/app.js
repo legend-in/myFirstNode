@@ -40,6 +40,7 @@ passport.deserializeUser(Users.deserializeUser());
 app.locals.moment = require("moment");
 const index = require("./routes/index");
 const profile = require("./routes/profile");
+const tweet = require("./routes/tweet");
 
 app.use((req, res, next) => {
     res.locals.user = req.user;
@@ -54,6 +55,7 @@ app.use((req, res, next) => {
 
 app.use("/", index);
 app.use("/profile", profile);
+app.use("/tweet", tweet);
 
 app.use((req, res, next) => {
 	const err = new Error("Page Not Found");

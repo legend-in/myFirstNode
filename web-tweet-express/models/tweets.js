@@ -7,21 +7,25 @@ const TweetsSchema = new Schema({
         required: true
     },
     imageUrl: String,
-    author: {
-        name: {
-            type: String,
-            required: true
-        },
-        username: {
-            type: String,
-            required: true
-        },
-        location: String,
-        bio: String,
-        avatarUrl: {
-            type: String,
-            default: "/img/webdxd.png"
-        }
+    // author: {
+    //     name: {
+    //         type: String,
+    //         required: true
+    //     },
+    //     username: {
+    //         type: String,
+    //         required: true
+    //     },
+    //     location: String,
+    //     bio: String,
+    //     avatarUrl: {
+    //         type: String,
+    //         default: "/img/webdxd.png"
+    //     }
+    // },
+    author: { 
+        type: Schema.Types.ObjectId,
+        ref: "Users"
     },
     createdAt: {
         type: Date,

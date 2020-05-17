@@ -25,7 +25,7 @@ router.post('/edit', utils.requireLogin, (req, res) => {
         if(err) {
             return next(err);
         } else {
-            return res.redirect('/profile')
+            return res.redirect('/profile');
         }
     });
 });
