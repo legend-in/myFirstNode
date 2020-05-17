@@ -7,13 +7,6 @@ const Users = require("../models/users");
 const router = express.Router();
 
 router.get("/", (req, res, next) => {
-    // Tweets.insertMany({
-    //     content: "Test",
-    //     author: {
-    //         name: "JJ",
-    //         username: "legend"
-    //     }
-	// });
     Tweets.find({}, (err, tweets) => {
         res.render("index", { tweets });
     });
@@ -35,8 +28,8 @@ router.post("/signup", (req, res, next) => {
 	const { username, password, confirmPassword } = req.body;
 	if (password === confirmPassword) {
 		Users.register(new Users({
+			name: username,
 			username,
-			name: username
 		}), password, (err, user) => {
 			if (err) {
 				return next (err);

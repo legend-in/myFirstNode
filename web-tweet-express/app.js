@@ -4,13 +4,14 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require("mongoose");
-const config = require("./config");
 const passport = require("passport");
+// const LocalStrategy  = require("passport-local").Strategy;
 const session = require("express-session");
-const LocalStrategy  = require("passport-local").Strategy;
+
 const Users = require("./models/users");
 const Tweets = require('./models/tweets');
 
+const config = require("./config");
 mongoose.connect(config.mongodb.connection);
 
 const app = express();
@@ -24,7 +25,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger("dev"));
 
-console.log();
 app.use(session({
     secret: "webdxd",
     resave: false,
