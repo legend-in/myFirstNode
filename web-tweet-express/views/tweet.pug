@@ -7,17 +7,55 @@
           textarea.input-tweet(placeholder="What's up?" name="content")
         .row.tweet-actions
           input.hidden(type="file")
+          input.hidden(id="postTweet" name="pathname")
           button.btn-clear
             i.far.fa-image
           button.btn-primary Post
-  //- each tweet in tweets
-  //-   .tweet
-  //-     .row
-  //-       img.avatar-sm(src=tweet.author.avatarUrl alt="avatar")
-  //-       h4
-  //-         b=tweet.author.name
-  //-       h5=`@${tweet.author.username}`
-  //-       h5=moment(tweet.createdAt).format('MMMM D, YYYY hh:mm A')
-  //-     p=tweet.content
-  //-       if (tweet.imageUrl)
-  //-         img(src=tweet.imageUrl alt="tweet")
+  if (user && userTweets)
+    each tweet in userTweets
+      .tweet
+        .row
+          img.avatar-sm(src=tweet.author.avatarUrl alt="avatar")
+          h4
+            b=tweet.author.name
+          h5=`@${tweet.author.username}`
+          h5=moment(tweet.createdAt).format('MMMM D, YYYY hh:mm A')
+          button.btn-clear.editBtn
+            p Edit
+          button.btn-clear.deleteBtn(id=tweet._id)
+            p Delete
+        p=tweet.content
+          if (tweet.imageUrl)
+            img(src=tweet.imageUrl alt="tweet")
+  else 
+    each tweet in tweets
+      .tweet
+        .row
+          img.avatar-sm(src=tweet.author.avatarUrl alt="avatar")
+          h4
+            b=tweet.author.name
+          h5=`@${tweet.author.username}`
+          h5=moment(tweet.createdAt).format('MMMM D, YYYY hh:mm A')
+        p=tweet.content
+          if (tweet.imageUrl)
+            img(src=tweet.imageUrl alt="tweet")
+  script.
+    const pathname = window.location.pathname;
+    $("#postTweet").val(pathname);
+    console.log($("#postTweet").val());
+    $(".editBtn").on("click", (e) => {
+      alert("button");
+    });
+    $(".deleteBtn").on("click", () => {
+      console.log($(this).id);
+      $.ajax({
+        url: "/tweet",
+        type: "DELETE",
+        data: {
+          //- _id: e.target._id
+        },
+        success() {
+          alert("Tweet has been deleted!");
+        } 
+      });
+    });

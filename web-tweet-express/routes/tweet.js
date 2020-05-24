@@ -1,20 +1,14 @@
 const express = require("express");
 const utils = require("../utils");
-const Tweets = require("../models/tweets");
 const passport = require("passport");
+
+const Tweets = require("../models/tweets");
+const Users = require("../models/users");
 
 const router = express.Router();
 
-router.get("/", utils.requireLogin, (req, res, next) => {
-    Tweets.find({_id: req.user._id})
-        .then((tweets) => {
-            return res.render("profile", { tweets });
-        }).catch(next(err));
-});
-
 router.post("/", utils.requireLogin, (req, res, next) => {
-    const { content } = req.body;
-    console.log(content);
+    const { content, pathname } = req.body;
     const tweet = new Tweets({
         content,
         author: req.user._id
@@ -22,8 +16,17 @@ router.post("/", utils.requireLogin, (req, res, next) => {
     console.log(tweet);
     tweet.save()
         .then(() => {
-            return res.redirect('/profile');
-        }).catch(next(err))
+            return res.redirect(pathname);
+        }).catch(next);
+});
+
+router.delete("/:id", utils.requireLogin, (req, res, next) => {
+    const id = req.params.id;
+    console.log(id);
+    Tweets.find({_id: id}).remove()
+        .then(() => {
+            return res.redirect(pathname);
+        }).catch(next);
 });
 
 module.exports = router;

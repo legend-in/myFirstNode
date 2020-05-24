@@ -16,11 +16,11 @@ const UsersSchema = new Schema({
     avatarUrl: {
         type: String,
         default: "/img/webdxd.png"
-    },
-    tweets: [{
-        type: Schema.Types.ObjectId,
-        ref: "Tweets"
-    }]
+    }
+    // tweets: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: "Tweets"
+    // }]
 });
 
 UsersSchema.plugin(passportLocalMongoose);

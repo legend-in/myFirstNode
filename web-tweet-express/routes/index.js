@@ -1,5 +1,4 @@
 const express = require("express");
-const Tweets = require("../models/tweets");
 const passport = require("passport");
 
 const Users = require("../models/users");
@@ -7,17 +6,15 @@ const Users = require("../models/users");
 const router = express.Router();
 
 router.get("/", (req, res, next) => {
-    Tweets.find({}, (err, tweets) => {
-        res.render("index", { tweets });
-    });
+	res.render("index");
 });
 
 router.get("/login", (req, res, next) => {
 	res.render("login");
 });
 
-router.post("/login", passport.authenticate("local"), (req, res, next) => {
-	res.redirect("/");
+router.post('/login', passport.authenticate('local'), (req, res, next) => {
+	res.redirect('/');
 });
 
 router.get("/signup", (req, res, next) => {

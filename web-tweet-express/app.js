@@ -47,11 +47,12 @@ app.use((req, res, next) => {
     next();
 });
 app.use((req, res, next) => {
-    Tweets.find({}, (err, tweets) => {
-        res.locals.tweets = tweets;
-        next();
-    })
-})
+    Tweets.find({}).populate("author")
+        .then((tweets) => {
+            res.locals.tweets = tweets;
+            next();
+        }).catch(next);
+});
 
 app.use("/", index);
 app.use("/profile", profile);
