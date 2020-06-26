@@ -342,7 +342,7 @@ headers: {
 
 ```
 ### POST `/api/v1/user/order/:id` (token required)
-* **Description:** change order status to "REFUND REQUESTED", id is the specific order._id. 
+* **Description:** change order status to "REFUND REQUESTED", add/update the refundNote if it's sent, id is the specific order._id. 
 - Only use this when the `order.isRefundable` is true
 * **Request Headers:**
 ```
