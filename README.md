@@ -357,7 +357,8 @@ headers: {
     "user": {
         "_id": String
     },
-    "orderStatus": "REFUND REQUESTED"
+    "orderStatus": "REFUND REQUESTED"，
+    “refundNote”: String            // optional
 }
 ```
 * **Response**
@@ -372,6 +373,7 @@ headers: {
         },
         "status": "REFUND REQUESTED",
         "isRefundable": false,
+        "refundNote": String,       // optional return depends on the order
         "items": [.             // Array of Object<item>
             {
                 "amount": Number,
