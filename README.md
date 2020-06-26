@@ -7,13 +7,11 @@
 ---
 For Frontend: 
 
-#### Note: For testing purpose now. If the API is `user required`, you need to set your user._id as a String in the request body as below:
-* **Request body:**
+#### Note: For testing purpose now. If the API is `user required`, you need to set your add {user: user._id} in the request headers as below:
+* **Request Headers:**
 ```
-{
-  user: {
-    _id: String //"YOUR user._id RETURNED BY THE LOGIN OR SIGNUP"
-  }
+headers: {
+  user: user._id     //YOUR user._id RETURNED BY THE LOGIN OR SIGNUP
 }
 
 // testing account
@@ -154,7 +152,7 @@ header: {
         "wechatName": "password"
     },
     "error": null,
-    "message": "Use this mocking user, put _id as a string in a {user} object inside req.body"
+    "message": "Use this mocking user, put _id as the value for req.headers.user"
 }
 ```
 
@@ -200,21 +198,23 @@ header: {
 {
     "success": true,
     "data": {
-        "user._id": String
+        "_id": String
     },
     "error": null,
     "message": "Signup successfully!"
 }
 ```
 
+
+
+
+
 ### GET `/api/v1/user` (token/user required)
 * **Description:** get user info
-* **Request body:**
+* **Request Headers:**
 ```
-{
-    "user": {
-        "_id": String
-    }
+headers: {
+  user: user._id     //YOUR user._id RETURNED BY THE LOGIN OR SIGNUP
 }
 ```
 * **Response**
@@ -246,12 +246,10 @@ header: {
 
 ### GET `/api/v1/user/order` (token/user required)
 * **Description:** get the list of user's orders
-* **Request body:**
+* **Request Headers:**
 ```
-{
-    "user": {
-        "_id": String
-    }
+headers: {
+  user: user._id     //YOUR user._id RETURNED BY THE LOGIN OR SIGNUP
 }
 ```
 * **Response**
@@ -269,14 +267,16 @@ header: {
 - For the returned user info, when its field `hasDefaultAddress` is true, the `user.address` is most recently set up default address. Otherwise, it has never set up a default address before, then the request body must have "address" field as below. 
 - When `req.body.address.isDefault` is true, the newly entered address will replace the user's default address `user.address`.
 - When `req.body.address.isDefault` is false or not sent, it will not change user's default address. 
+* **Request Headers:**
+```
+headers: {
+  user: user._id     //YOUR user._id RETURNED BY THE LOGIN OR SIGNUP
+}
+```
 * **Request body:**
 
 ```
 {
-    "user": {
-        "_id": String,
-        "address": String          //optional, default address, is null if it has never set up a default address before
-    }, 
     "order": {
         "items": [{                // Array of Objects<item>
             "itemId": String,
@@ -344,6 +344,12 @@ header: {
 ### POST `/api/v1/user/order/:id` (token required)
 * **Description:** change order status to "REFUND REQUESTED", id is the specific order._id. 
 - Only use this when the `order.isRefundable` is true
+* **Request Headers:**
+```
+headers: {
+  user: user._id     //YOUR user._id RETURNED BY THE LOGIN OR SIGNUP
+}
+```
 * **Request body:**
 
 ```
