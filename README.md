@@ -384,13 +384,19 @@ headers: {
         "items": [.             // Array of Object<item>
             {
                 "amount": Number,
-                "_id": String,
-                "itemId": String
+                "itemId": String,
+                "name": String,
+                "img": String,
+                "price": Number,
+                "origPrice": Number
             },
             {
                 "amount": Number,
-                "_id": String,
-                "itemId": String
+                "itemId": String,
+                "name": String,
+                "img": String,
+                "price": Number,
+                "origPrice": Number
             }
         ],
         "_id": String,
