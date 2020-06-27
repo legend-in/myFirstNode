@@ -361,9 +361,6 @@ headers: {
 
 ```
 {
-    "user": {
-        "_id": String
-    },
     "orderStatus": "REFUND REQUESTED"，
     “refundNote”: String            // optional
 }
