@@ -315,13 +315,19 @@ headers: {
         "items": [.             // Array of Object<item>
             {
                 "amount": Number,
-                "_id": String,
-                "itemId": String
+                "itemId": String,
+                "name": String,
+                "img": String,
+                "price": Number,
+                "origPrice": Number
             },
             {
                 "amount": Number,
-                "_id": String,
-                "itemId": String
+                "itemId": String,
+                "name": String,
+                "img": String,
+                "price": Number,
+                "origPrice": Number
             }
         ],
         "totalPrice": Number,
@@ -341,6 +347,7 @@ headers: {
 }
 
 ```
+
 ### POST `/api/v1/user/order/:id` (token required)
 * **Description:** change order status to "REFUND REQUESTED", add/update the refundNote if it's sent, id is the specific order._id. 
 - Only use this when the `order.isRefundable` is true
