@@ -285,7 +285,6 @@ headers: {
             "itemId": String,
             "amount": Number
         }],
-        "totalPrice": Number
     },
     // newly eneterd address
     "address": {                   // optional, must have if using newly entered address
@@ -310,7 +309,7 @@ headers: {
         "status": "PENDING",
         "isRefundable": true,
         "_id": String,
-        "uuid": String,
+        "uniqueId": String,
         "userId": String,
         "items": [.             // Array of Object<item>
             {
@@ -331,6 +330,7 @@ headers: {
             }
         ],
         "totalPrice": Number,
+        "totalAmount": Number,
         "address": {
             "_id": "String",
             "userId": "String",
@@ -397,9 +397,10 @@ headers: {
             }
         ],
         "_id": String,
-        "uuid": String,
+        "uniqueId": String,
         "userId": String,
         "totalPrice": 12345,
+        "totalAmount": Number,
         "address": String,
         "__v": 0
     },
